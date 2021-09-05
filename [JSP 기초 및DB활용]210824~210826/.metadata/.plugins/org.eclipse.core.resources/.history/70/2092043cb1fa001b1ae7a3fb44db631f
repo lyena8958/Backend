@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>글 설명과 사진 정렬</title>
+<style type="text/css">
+	p{
+		border: 1px solid black;
+	}
+	img{
+		
+	}
+</style>
+</head>
+<body>
+
+	<p>
+		Lorem ipsum<img alt="티모가 따봉하는 사진" src="image/tmIcon.png">
+	</p>
+
+</body>
+</html>

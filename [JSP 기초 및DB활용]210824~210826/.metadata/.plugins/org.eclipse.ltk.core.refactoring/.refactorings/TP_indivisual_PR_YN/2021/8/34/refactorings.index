@@ -1,0 +1,40 @@
+1629271929635	Move 'profile-master' to 'WebContent'
+1629272006067	Move 'profile-master' to 'WEB-INF'
+1629272169532	Delete element
+1629339458374	Rename resource 'index.html'
+1629339622077	Rename resource 'LBJ_PR_YENA.html'
+1629354924093	Rename resource 'YN_data'
+1629354985373	Move 'YN_data.json' to 'sass'
+1629354997768	Move 'YN_data.json' to 'WebContent'
+1629355018124	Delete element
+1629355028455	Rename resource 'data2.json'
+1629356685001	Rename resource 'signUpjs2.js'
+1629356918781	Move 'YN_data.json' to 'js'
+1629356922817	Move 'jquery-3.6.0.min.js' to 'profile-master'
+1629356924487	Move 'YNPR.js' to 'profile-master'
+1629356952569	Move 'YN_data.json' to 'profile-master'
+1629358934496	Delete element
+1629361108900	Move 'spring3.jpg' to 'images'
+1629452017368	Delete element
+1629452034105	Delete element
+1629452056415	Delete element
+1629452077792	Delete element
+1629452089210	Delete element
+1629452100954	Delete element
+1629455337359	Delete element
+1629455364717	Rename resource 'image18.jpg'
+1629477864594	Rename resource 'animate.css'
+1629477867472	Rename resource 'bootstrap.css'
+1629477869468	Rename resource 'bootstrap.css.map'
+1629477871753	Rename resource 'flexslider.css'
+1629477873557	Rename resource 'icomoon.css'
+1629477875821	Rename resource 'style.css'
+1629477877541	Rename resource 'style.css.map'
+1629477897101	Rename resource 'style.scss'
+1629477899669	Rename resource 'bootstrap.scss'
+1629477901595	Rename resource '_bootstrap-sprockets.scss'
+1629477903797	Rename resource '_bootstrap-mincer.scss'
+1629477906110	Rename resource '_bootstrap-compass.scss'
+1629477910215	Rename resource 'NewFile.html'
+1629477912581	Rename resource 'NewFile1.html'
+1629477915253	Rename resource 'NewFile2.html'

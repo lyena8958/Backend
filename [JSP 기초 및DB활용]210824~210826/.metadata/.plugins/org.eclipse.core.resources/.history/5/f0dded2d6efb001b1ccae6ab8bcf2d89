@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입 이용약관</title>
+<style type="text/css">
+	.agree{
+		width: 300px;
+		height: 70px;
+		border: 1px solid black;
+		overflow-y: scroll;
+	}
+</style>
+</head>
+<body>
+
+	<h2>회원가입 이용약관</h2>
+	<p class="agree">제 1조 Lorem ipsum dolor sit amet<br>
+	① consectetur adipisicing elit<br>
+	② consectetur adipisicing elit<br>
+	③ consectetur adipisicing elit<br>
+	Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+		eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
+		minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+		aliquip ex ea commodo consequat. Duis aute irure dolor in
+		reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+		pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+		culpa qui officia deserunt mollit anim id est laborum.</p>
+
+</body>
+</html>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+		<item value="C:\Users\user\Desktop\TeamProject2"/>
+		<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\0701\src\day09_0702"/>
+		<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\0701\src\day08_0701"/>
+	</list>
+	<section name="CleanDialogSettings">
+		<item value="500" key="DIALOG_WIDTH"/>
+		<item value="true" key="TOGGLE_SELECTED"/>
+		<item value="402" key="DIALOG_HEIGHT"/>
+		<item value="266" key="DIALOG_X_ORIGIN"/>
+		<item value="258" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="ExternalProjectImportWizard">
+		<item value="false" key="WizardProjectsImportPage.STORE_NESTED_PROJECTS"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID"/>
+		<item value="false" key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace-백엔드\day49_0903_YNtemplate"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace-백엔드\day49_0903_YN"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace-백엔드\day49_0903_test"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace-백엔드\day49_0903"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace-백엔드\day48_0902"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace-백엔드\day47_0901"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace-백엔드\day47_0901_YNtemplate"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace-백엔드\day46_0831_YNtemplate_0901"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace-백엔드\day46_0831_YNtemplate"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace-백엔드\day45_0830"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\finalfinal"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\day26_html_0802_TeamProject"/>
+			<item value="C:\Users\user\Desktop\0802"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\Servers"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\TeamProject_comm"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\day26_0802_2"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\TeamProject"/>
+			<item value="C:\Users\user\Desktop\TeamProject"/>
+			<item value="C:\Users\user\Desktop\TeamProject\src"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\0701\src\day10_0705"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\day26_0802_2\WebContent\TeamProject(1).html"/>
+			<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\day26_0802_2\WebContent\Team_yena.html"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.internal.ide.dialogs.ProjectContentsLocationArea">
+		<item value="C:\KIM_0622\workspace\국비_JAVA_workspace\TeamProject" key="OUTSIDE_LOCATION"/>
+	</section>
+	<section name="TaskPropertiesDialogSettings">
+		<item value="722" key="DIALOG_WIDTH"/>
+		<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+		<item value="283" key="DIALOG_HEIGHT"/>
+		<item value="157" key="DIALOG_X_ORIGIN"/>
+		<item value="335" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.jdt.ui.wizards.JavaProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+		</list>
+	</section>
+	<section name="org.eclipse.ui.dialogs.FilteredResourcesSelectionDialog">
+		<item value="false" key="FilterByLocation"/>
+		<item value="true" key="ShowStatusLine"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History&gt;&#x0D;&#x0A;&lt;historyRootNode/&gt;&#x0D;&#x0A;&lt;/History&gt;" key="History"/>
+		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;workingSet workingSetName=&quot;&quot;/&gt;" key="WorkingSet"/>
+		<item value="false" key="ShowDerived"/>
+		<section name="DialogBoundsSettings">
+			<item value="600" key="DIALOG_WIDTH"/>
+			<item value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕" key="DIALOG_FONT_NAME"/>
+			<item value="500" key="DIALOG_HEIGHT"/>
+			<item value="191" key="DIALOG_X_ORIGIN"/>
+			<item value="190" key="DIALOG_Y_ORIGIN"/>
+		</section>
+	</section>
+</section>

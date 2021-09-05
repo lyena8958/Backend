@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>내장객체-request 사용자 입력폼</title>
+</head>
+<body>
+	<!-- 보낼페이지 : NF5.jsp -->
+	<form name="form1" method="post" action="NewFile5_7.jsp">
+
+		<table border="1">
+			<tr>
+				<td>이름</td>
+				<td><input type="text" name="username"></td>
+			</tr>
+			<tr>
+				<td>학년</td>
+				<td><select name="grade">
+						<option selected>1학년</option>
+						<option>2학년</option>
+						<option>3학년</option>
+				</select></td>
+			</tr>
+			<tr>
+				<td>수강하는 과목</td>
+				<!-- radio에는 동의,비동의 같은 양자택일 상황에 쓰지만 -->
+				<!-- 지금같은 수강과목, 선택같은 경우에는 체크박스를 쓴다. -->
+				<td><input type="checkbox" name="subject" value="C언어">C언어
+				<input type="checkbox" name="subject" value="JAVA">JAVA
+				<input type="checkbox" name="subject" value="HTML">HTML
+				<input type="checkbox" name="subject" value="JSP">JSP</td>
+			</tr>
+			<tr>
+				<td colspan="2"><input type="submit" value="제출하기"></td>
+				<!-- 버튼형으로도 만들수있지만, 제출을해야하기 때문에 submit을 사용 -->
+			</tr>
+		</table>
+
+	</form>
+
+
+</body>
+</html>

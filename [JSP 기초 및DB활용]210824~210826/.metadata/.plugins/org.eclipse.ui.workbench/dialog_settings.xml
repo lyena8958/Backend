@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="WorkbenchPreferenceDialogSettings">
+		<item value="119" key="DIALOG_X_ORIGIN"/>
+		<item value="93" key="DIALOG_Y_ORIGIN"/>
+	</section>
+	<section name="org.eclipse.ui.internal.QuickAccess">
+		<item value="691" key="dialogHeight"/>
+		<item value="614" key="dialogWidth"/>
+		<list key="textEntries">
+			<item value="1"/>
+		</list>
+		<list key="orderedElements">
+			<item value="org.eclipse.jdt.ui.JavaPerspective"/>
+		</list>
+		<list key="orderedProviders">
+			<item value="org.eclipse.ui.perspectives"/>
+		</list>
+		<list key="textArray">
+			<item value="java"/>
+		</list>
+	</section>
+	<section name="NewWizardAction">
+		<item value="org.eclipse.jst.servlet.ui.project.facet.WebProjectWizard" key="NewWizardSelectionPage.STORE_SELECTED_ID"/>
+		<list key="NewWizardSelectionPage.STORE_EXPANDED_CATEGORIES_ID">
+			<item value="org.eclipse.jpt.jpa"/>
+			<item value="org.eclipse.wst.web.ui"/>
+		</list>
+	</section>
+	<section name="ImportExportAction">
+		<item value="org.eclipse.ui.wizards.export.ZipFile" key="ImportExportPage.STORE_SELECTED_EXPORT_WIZARD_ID"/>
+		<item value="org.eclipse.ui.wizards.import.ExternalProject" key="ImportExportPage.STORE_SELECTED_IMPORT_WIZARD_ID"/>
+		<list key="ImportExportPage.STORE_EXPANDED_IMPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+		<list key="ImportExportPage.STORE_EXPANDED_EXPORT_CATEGORIES">
+			<item value="org.eclipse.ui.Basic"/>
+		</list>
+	</section>
+	<section name="ZipFileImportWizard">
+		<item value="false" key="WizardZipFileResourceImportPage1.STORE_OVERWRITE_EXISTING_RESOURCES_ID"/>
+		<list key="WizardZipFileResourceImportPage1.STORE_SOURCE_NAMES_ID">
+			<item value="C:\Users\user\Desktop\day07.zip"/>
+			<item value="C:\Users\user\Desktop\day04.zip"/>
+			<item value="C:\Users\user\Desktop\stellar.zip"/>
+			<item value="C:\Users\user\Desktop\courier-v1.0.0.zip"/>
+			<item value="C:\Users\user\Desktop\day02.zip"/>
+			<item value="C:\Users\user\Downloads\racks-master.zip"/>
+			<item value="C:\Users\user\Desktop\profile-master.zip"/>
+			<item value="C:\Users\user\Desktop\찐찐막_0808.zip"/>
+			<item value="C:\Users\user\Desktop\view.zip"/>
+			<item value="C:\Users\user\Desktop\model.zip"/>
+			<item value="C:\Users\user\Desktop\TeamProject.zip"/>
+			<item value="C:\Users\user\Desktop\project(1)_view.zip"/>
+			<item value="C:\Users\user\Desktop\teamproject.zip"/>
+		</list>
+	</section>
+	<section name="FileSystemImportWizard">
+	</section>
+	<section name="ZipFileExportWizard">
+		<item value="true" key="WizardZipFileResourceExportPage1.STORE_COMPRESS_CONTENTS_ID"/>
+		<item value="true" key="WizardZipFileResourceExportPage1.STORE_CREATE_STRUCTURE_ID"/>
+		<list key="WizardZipFileResourceExportPage1.STORE_DESTINATION_NAMES_ID">
+			<item value="C:\Users\user\Desktop\finalfinal_2.zip"/>
+			<item value="C:\Users\user\Desktop\project(1)_view.zip"/>
+			<item value="C:\Users\user\Desktop\yena_gradeprogram.zip"/>
+		</list>
+	</section>
+</section>

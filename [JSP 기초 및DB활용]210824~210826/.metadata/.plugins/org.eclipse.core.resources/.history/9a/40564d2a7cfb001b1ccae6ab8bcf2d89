@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>움직이는 스타일-애니메이션 효과2</title>
+<style>
+	@keyframes sample{
+		0% { background: orange; transform: translate(0,0); }
+		50% { background: green; transform: translate(100px,30px); }
+		100% {  background: red; transform: translate(0,0);}
+	}
+	p{
+		width: 100px;
+		height: 100px;
+		background: orange;
+		animation-name: sample;
+		animation-duration: 3s;
+	}
+</style>
+</head>
+<body>
+
+	<p>애니메이션 효과</p>
+
+</body>
+</html>

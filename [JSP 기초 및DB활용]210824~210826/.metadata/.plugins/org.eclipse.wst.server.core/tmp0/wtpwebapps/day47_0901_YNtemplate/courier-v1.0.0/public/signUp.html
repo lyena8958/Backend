@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <!-- ===============================================-->
+    <!--    Document Title-->
+    <!-- ===============================================-->
+    <title>courier | Landing, Responsive &amp; Business Templatee</title>
+
+
+    <!-- ===============================================-->
+    <!--    Favicons-->
+    <!-- ===============================================-->
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/img/favicons/favicon-16x16.png">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicons/favicon.ico">
+    <link rel="manifest" href="assets/img/favicons/manifest.json">
+    <meta name="msapplication-TileImage" content="assets/img/favicons/mstile-150x150.png">
+    <meta name="theme-color" content="#ffffff">
+
+
+    <!-- ===============================================-->
+    <!--    Stylesheets-->
+    <!-- ===============================================-->
+    <link href="assets/css/theme.css" rel="stylesheet" />
+
+  </head>
+
+
+  <body>
+
+    <!-- ===============================================-->
+    <!--    Main Content-->
+    <!-- ===============================================-->
+    
+    <main class="main" id="loginTop">
+     <h2 class="fw-bolder fs-xxl-7 mb-2">배달서비스 이용 회원가입</h2>
+      <section class="py-xxl-10 pb-0" id="home">
+        <div class="bg-holder bg-size" style="background-image:url(assets/img/gallery/hero-header-bg.png);background-position:top center;background-size:cover;">
+              <form class="row" name="join" id="join" method="post" action="control.jsp">
+              <input type="hidden" name="action" value="signup">
+               <div class="mb-3">
+                  <label class="form-label visually-hidden" for="inputName">성명</label>
+                  <input class="form-control form-quriar-control joinCheck" id="inputName" type="text" name="userName" placeholder="성함을 입력하세요." required maxlength="10"/>
+                </div>
+                
+                <div class="mb-3">
+                  <label class="form-label visually-hidden" for="inputName">ID</label>
+                  <input class="form-control form-quriar-control joinCheck" id="inputName" type="text" name="userID" placeholder="아이디를 입력하세요." required minlength="4" maxlength="10"/>
+                </div>
+                
+                 <div class="mb-3">
+                  <label class="form-label visually-hidden" for="inputName">PW</label>
+                  <input class="form-control form-quriar-control joinCheck  " id="inputName" type="password" name="userPW" placeholder="비밀번호를 입력하세요." required minlength="4" maxlength="10"/>
+                </div>
+                
+                <span id="consentBox">
+                	<h5>개인정보 처리방침</h5>
+                	<br>
+                	■ 개인정보의 수집 및 이용목적 회사는 수집한 개인정보를 다음의 목적을 위해 활용합니다.
+                	<br>
+					- 서비스 제공에 관한, 서비스 제공에 따른 요금정산 콘텐츠 제공 , 구매 및 요금 결제
+					<br>
+					- 고객 관리: 고객 서비스 이용에 따른 본인확인 , 개인 식별 , 불량회원의 부정 이용 방지와 비인가 사용 방지 , 가입 의사 확인 , 불만처리 등 민원처리 , 고지사항 전달
+					<br>
+					- 마케팅 및 광고에 활용 : 이벤트 등 광고성 정보 전달, 접속 빈도 파악 또는 회원의 서비스 이용에 대한 통계
+					<br>
+					■ 수집하는 개인정보 항목 회사는 정보주체가 고객서비스(상담신청, 상담, 서비스 신청 등)를 이용하기 위하여 고객의 개인 정보를 제공할 때의 서비스 제공을 위한 필수 정보와, 
+					보다 향상된 서비스 제공을 위한 선택정보를 온라인상 입력방법을 통하여 수집하고 있습니다. 수집하는 개인정보의 범위는 아래와 같습니다.
+					<br>
+					개인정보 수집항목 - 필수항목: 이름, 전화번호 , 이메일, 주소
+					<br>
+					-자동수집 항목 : 접속로그( 주소, 전화번호, 결제내역 ) 개인정보 수집방법 정보주체는 웹사이트 또는 서면 절차를 통하여 개인정보처리방침과 
+					이용약관 각각의 내용을 확인하고 ‘동의’ 또는 ‘동의하지 않는다’ 문구를 선택 할 수 있습니다. 
+					정보 주체가 ‘동의’ 문구를 선택한 경우에는 개인정보 수집에 동의한 것으로 봅니다.
+                </span>
+                <span>
+                <label class="select" id="check">
+                	<input type="radio"  id="agree" value="동의" name="select">동의
+                </label>
+                <label class="select" id="noneCheck">
+                	<input type="radio"  value="비동의" name="select" checked="checked">비동의
+                </label>
+                </span>
+                <div class="d-grid">
+                  <button class="btn btn-primary" type="submit">회원가입<i class="fas fa-paper-plane ms-2"></i></button>
+                </div>
+              </form>
+		  </div>
+		</section>
+    </main>
+
+
+
+
+
+    <!-- ===============================================-->
+    <!--    JavaScripts-->
+    <!-- ===============================================-->
+    <script src="vendors/@popperjs/popper.min.js"></script>
+    <script src="vendors/bootstrap/bootstrap.min.js"></script>
+    <script src="vendors/is/is.min.js"></script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=window.scroll"></script>
+    <script src="vendors/fontawesome/all.min.js"></script>
+    <script src="assets/js/theme.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  </body>
+
+</html>

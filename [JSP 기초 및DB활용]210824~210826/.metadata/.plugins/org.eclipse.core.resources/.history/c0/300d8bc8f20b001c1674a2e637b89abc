@@ -1,0 +1,22 @@
+<%@ tag language="java" pageEncoding="UTF-8"%>
+<jsp:useBean id="memberBean" class="model.MemberBean"/>
+
+<%
+	boolean login = memberBean.loginCheck(request.getParameter("id"), request.getParameter("pw"));
+	
+
+	if(!login){
+		out.println("<script>alert('로그인 실패!'); history(-1);</script>");
+	}
+	else{
+		session.setAttribute("mem", memberBean);
+%>		
+		<form action="login.jsp">
+		<input type="submit" value="로그아웃" onClick=>
+		</form>
+<%	
+	}
+
+%>
+
+

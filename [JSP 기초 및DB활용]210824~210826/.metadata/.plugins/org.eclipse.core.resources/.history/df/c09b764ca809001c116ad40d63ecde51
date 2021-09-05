@@ -1,0 +1,86 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.ArrayList, model.message.*" errorPage="error.jsp"%>
+<% request.setCharacterEncoding("UTF-8"); %>
+<jsp:useBean id="messageDAO" class="model.message.MessageDAO"/>
+
+<!-- 페이지마다 데이터를 보낼 때 매번 messageVO의 속성들 데이터가 새로고침이 되는지? 아니면, 덧붙이게되는지? -->
+<jsp:useBean id="messageVO" class="model.message.MessageVO" /> <!-- messageVO는 list.jsp로부터 mnum만 setProperty를해주어 45번 line에서 활용 -->
+<jsp:setProperty property="*" name="messageVO"/>
+<%
+	// >> 컨트롤러 파트 <<
+	// 컨트롤러를 호출했을때의 요청 파라미터를 분석
+	String action = request.getParameter("action"); // ==index.jsp에있는 action과 동일하다
+	//System.out.println(action);
+	if(action.equals("list")){
+		// action이 list라면 list페이지를 보여주자.
+		// list.jsp가 사용해야 할 데이터 == AL
+		ArrayList<MessageVO> datas = messageDAO.getDBList(); // 모델로부터 받아와서
+		request.setAttribute("datas", datas);//뷰에게 전달할 데이터
+		pageContext.forward("list.jsp"); //뷰에게 세팅
+		//<jsp:forward 보내도되지않나?>
+	}
+	else if(action.equals("insert")){ 
+		if(messageDAO.insertDB(messageVO)){
+			response.sendRedirect("control.jsp?action=list");
+		}
+		else{
+			throw new Exception("DB 생성 오류 발생!"); // 예외미루기 --> errorPage페이지로 이동
+		}
+	}
+	else if(action.equals("delete")){ //edit.jsp
+		// dao.delete() 수행
+		// list.jsp에서 받은 mnum로 messageVO를 위에서 set해주고, 객체넘겨서 데이터를 받음 
+		//	== messageVO set은 7번라인에서 해주었기에 getDBData에서 PK값만 넘김에따라 모든 데이터를 data객체로 반환받을 수 있었던 것이다.
+				
+		if(messageDAO.deleteDB(messageVO)){
+			response.sendRedirect("control.jsp?action=list");
+		}
+		else{ // delete 실패
+			throw new Exception("DB 삭제 오류 발생!"); // 예외미루기 --> errorPage페이지로 이동
+		}
+		
+	}
+	else if(action.equals("update")){ //edit.jsp
+		// dao.update() 수행
+		if(messageDAO.updateDB2(messageVO)){
+			//update 완료 --> 다시 전체화면으로 이동
+			// C -> list.jsp 보게하고싶음 -> C로 다시 보낼건데. 이때 "action을 통해서 보내준다."
+			response.sendRedirect("control.jsp?action=list");
+			// 16~18번 라인으로 가져와도 되지만, 중복코드를 최소화함을 위해서 위처럼 입력해줌
+			// forward 써도되지않나요? >> 그렇게 쓰지않으며 spring에서 설명해줄예정
+			// 어차피 결론적으로 forward이 일어남 >> 왜냐면 자기를 불러서 13번 라인으로 타고가기 때문
+		}
+		else{ // update 실패
+			throw new Exception("DB 변경 오류 발생!"); // 예외미루기 --> errorPage페이지로 이동
+		}
+	}
+	else if(action.equals("edit")){
+		// list.jsp에서 받은 mnum로 messageVO를 위에서 set해주고, 객체넘겨서 데이터를 받음 
+		//	== messageVO set은 7번라인에서 해주었기에 getDBData에서 PK값만 넘김에따라 모든 데이터를 data객체로 반환받을 수 있었던 것이다.
+				
+		MessageVO data = messageDAO.getDBData(messageVO); 
+		request.setAttribute("data", data);
+		pageContext.forward("edit.jsp");
+		// getDBData()
+		// GUI상에서 사용자가 잘못된 mnum를 건네는 경우는 없다! (== 네이버 웹툰에서 다른 곳의 버튼을 눌러도 이동이 되지않는것처럼)
+		//   └>하지만 URL을 통해 이상한 값을 사용자가 입력할 수가 있는데, --> 오류페이지 속성으로 처리하자. (== 지정페이지로 변경무관)
+	}
+	else{ //사용자가 직접입력을 하거나 개발 중일 경우를 대비
+		out.println("파라미터 확인!");
+	}
+	
+	
+%>
+    
+    
+<!-- 사실상 아래 코드는 필요치 않음 -->
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>컨트롤러</title>
+</head>
+<body>
+
+</body>
+</html>

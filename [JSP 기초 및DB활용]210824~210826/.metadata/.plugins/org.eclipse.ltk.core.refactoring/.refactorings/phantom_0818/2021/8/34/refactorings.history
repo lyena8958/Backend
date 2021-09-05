@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;ajax.js&apos; to &apos;WebContent&apos;&#x0D;&#x0A;- Original project: &apos;phantom_0818&apos;&#x0D;&#x0A;- Destination element: &apos;WebContent&apos;&#x0D;&#x0A;- Original element: &apos;ajax.js&apos;" description="Copy file" element1="WebContent/assets/js/ajax.js" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1629270022199" target="/Test/WebContent" units="0" version="1.0"/>
+</session>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 3 elements to &apos;day43_0826_YNtemplate/src/day44_0827_testDB&apos;&#x0D;&#x0A;- Original project: &apos;day44_0827_testDB&apos;&#x0D;&#x0A;- Destination element: &apos;day43_0826_YNtemplate/src/day44_0827_testDB&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     day44_0827_testDB.JDBC.java&#x0D;&#x0A;     day44_0827_testDB.MemberVO.java&#x0D;&#x0A;     day44_0827_testDB.MemberDAO.java" description="Copy compilation units" destination="=day43_0826_YNtemplate/src&lt;day44_0827_testDB" element1="/src&lt;day44_0827_testDB{JDBC.java" element2="/src&lt;day44_0827_testDB{MemberVO.java" element3="/src&lt;day44_0827_testDB{MemberDAO.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1630080987553" units="3" version="1.0"/>
+</session>

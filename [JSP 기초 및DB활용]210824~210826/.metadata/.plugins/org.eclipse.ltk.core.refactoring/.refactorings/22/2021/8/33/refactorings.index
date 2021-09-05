@@ -1,0 +1,27 @@
+1628421057100	Rename package 'asd.src.controller'
+1628421061831	Rename package 'asd.src.controller.test'
+1628421065124	Rename package 'asd.src.model'
+1628421075736	Rename package 'asd.src.model.gift'
+1628421078510	Rename package 'asd.src.model.member'
+1628421091262	Rename package 'asd.src.model.store'
+1628421094894	Rename package 'asd.src.View'
+1628421099027	Rename package 'asd.src.model.menu'
+1628421117075	Delete elements
+1628421120383	Delete elements
+1628421123310	Delete elements
+1628421125219	Delete element
+1628421295301	Delete element
+1628421462573	Rename type 'Controller'
+1628421474322	Rename type 'giftDAO'
+1628421477150	Rename type 'giftVO'
+1628421480191	Rename type 'menuDAO'
+1628421482579	Rename type 'storeDAO'
+1628421485142	Rename type 'storeVO'
+1628421487087	Rename type 'GiftView'
+1628421491691	Rename type 'MemberView'
+1628421494261	Rename type 'MenuView'
+1628421496392	Rename type 'MyException'
+1628421498511	Rename type 'StoreView'
+1628421502272	Rename type 'menuVO'
+1628421505748	Rename type 'JDBC'
+1628421508079	Rename type 'DAO'

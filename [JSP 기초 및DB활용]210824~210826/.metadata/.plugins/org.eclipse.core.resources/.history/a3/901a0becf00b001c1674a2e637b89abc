@@ -1,0 +1,46 @@
+<%@ tag language="java" pageEncoding="UTF-8"%>
+<%@attribute name="border" %>
+<%@attribute name="bgcolor" %>
+
+<%
+	if(session.getAttribute("mem")==null){
+		
+	
+
+%>
+<form action="loginCheck.jsp" method="post">
+<table border="${border}" bgcolor="${bgcolor}">
+	<tr>
+		<td>아이디</td>
+		<td><input type="text" name="id" id="id" placeholder="아이디 입력"></td>
+		<td>패스워드</td>
+		<td><input type="text" name="pw" id="pw" placeholder="비밀번호 입력"></td>
+	</tr>
+</table>
+		<input type="submit" value="로그인하기">
+</form>
+
+
+<%
+	}
+	else{
+%>
+		<input type="submit" value="로그아웃">
+		<script>
+			function logout(){
+			result = confilm("로그아웃 하시겠습니까?");
+			if(result){//세션 초기화 후, login 재접속
+				<%=session.invalidate()%>
+				<%=response.sendRedirect("login.jsp")%>
+			}
+			else{//변화없음
+				return;
+			}
+		}
+		
+		</script>
+<%
+		
+	}
+
+%>

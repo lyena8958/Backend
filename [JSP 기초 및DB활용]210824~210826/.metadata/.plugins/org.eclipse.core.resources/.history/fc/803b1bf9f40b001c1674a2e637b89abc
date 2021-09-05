@@ -1,0 +1,22 @@
+<%@ tag language="java" pageEncoding="UTF-8"%>
+
+
+<%
+	
+	
+
+	if(!login){
+		
+	}
+	else{
+		
+%>		
+		<form action="login.jsp">
+		<input type="submit" value="로그아웃" onClick=>
+		</form>
+<%	
+	}
+
+%>
+
+

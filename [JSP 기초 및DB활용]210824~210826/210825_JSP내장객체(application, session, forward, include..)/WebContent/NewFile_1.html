@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+
+<body>
+<!-- action는 이 문제를 누가 처리할지 기술함 > 우리는 본인이하기때문에 정의하지않았음 -->
+<!-- html에서는 자바코드를 넣을 수 없기 때문에 action을통해 calc기능을 처리할 것이다. -->
+<form name="form1" method="post" action="/day42_0825/CalcServlet">
+
+<!-- action="/day42_0825/CalcServlet"에서 CalcServlet를 호출함에 따라 기능을 불러올 수가 있는데, 
+form의 메서드가 post, get이냐에 따라 각 메서드들이 자동 호출이 된다. → 
+그이유는 서블릿에서 httpServlet을 상속받았고, 그때 이런 기능들이 전부 무료제공 되는상황, 
+결론은 form method, action에 따라 호출메서드가 갈린다.
+ -->
+ <!--강사님 저희가했던  흐름이 html 기능호출(action) → servlet with Class(관심분리) → 
+ 	jsp 페이지를 불러왔던게 맞는건가욤? YES~~!!! -->
+ 
+ 
+ 
+	<input type="text" name="num1" id="num1">
+	<select name="op">
+		<option selected>+</option>
+		<option>-</option>
+	</select>
+	<input type="text" name="num2" id="num2">
+	<input type="submit" value="계산하기" name="btn1">
+	
+	<input type="reset" value="초기화">
+	<!-- 웹 접근성 지침을 위해 리셋버튼도 넣어주자 -->
+</form>
+<!-- NF.html > CalcServlet with Calc.java > NF.jsp페이지로 계산결과 불러옴 -->
+<!-- 여기서했던  흐름이 html에서 기능호출(action) 
+→ servlet with Class(관심분리) → jsp로 페이지를 불러왔던 것임 -->
+<!--jsp를 실행하면 서블릿이 먼저 변환이 되어 수행되기 때문에
+서블릿 변환파일 내부의 "내장객체"들이 있어 request, appcliation등 사용할수가있는것이다. -->
+
+<!--이러한 모습은 실무나 현업에서도 안쓰지만, 흐름을 위해 실습했던 것이다. -->
+
+
+
+</body>
+</html>

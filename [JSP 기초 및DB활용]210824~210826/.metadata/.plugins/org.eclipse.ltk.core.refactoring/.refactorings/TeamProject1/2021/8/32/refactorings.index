@@ -1,0 +1,25 @@
+1627816996234	Delete element
+1627817286414	Delete element
+1627817343138	Delete element
+1627817759291	Delete element
+1627818356644	Delete element
+1627819042286	Delete element
+1627819563075	Copy compilation unit
+1627966224846	Rename package 'View'
+1627966244918	Rename package 'View2'
+1627966343801	Rename type 'GiftView'
+1627966465223	Rename type 'MemberView'
+1627966467973	Rename type 'MenuView'
+1627966470943	Rename type 'StoreView'
+1627966474009	Rename compilation unit 'ViewTest.java'
+1627972203125	Rename type 'MenuView'
+1627976925281	Rename compilation unit 'StoreView.java'
+1627977530900	Rename field 'vo'
+1628222042845	Delete element
+1628222103628	Rename type 'StoreOptionview'
+1628222155949	Rename type 'Storeview'
+1628222662921	Delete element
+1628222670853	Rename type 'StoreView2'
+1628222742457	Rename package 'View_var2'
+1628222753462	Rename package 'View_var1'
+1628222767593	Rename compilation unit 'Test.java'
