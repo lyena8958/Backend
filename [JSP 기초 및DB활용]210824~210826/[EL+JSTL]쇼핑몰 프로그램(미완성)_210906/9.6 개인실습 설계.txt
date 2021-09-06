@@ -1,0 +1,47 @@
+▶총 페이지 수 : 7~8개◀
+	[ 시작페이지 (☆index.jsp) ]
+  버튼 클릭시 control 통해 메인page 이동
+	             ↓
+
+	[ 메인페이지 (☆main.jsp) ]
+            -  (메뉴바) @로그인(아웃)  @(회원전용)마이페이지 @상품명 검색 @장바구니
+            - 상품 목록
+	 └ 각 상품에는 개수(cnt)와 구매버튼이 있다.
+
+	[ 메인 -> 로그인 (☆login.jsp) ]
+	- 로그인 
+	          성공 -> control -> 회원 메인페이지 접속 
+	          실패 -> alert 안내창과 함께 이전 페이지로 이동
+	- 회원가입(☆signUp.jsp) -> 가입 -> control -> 반영결과 알림
+	- 정보찾기(시간되면 구현예정 ☆infoSearch.jsp)
+
+	[ 메인 -> 마이페이지 (☆myPage.jsp) ]
+	※회원만 해당 버튼이 활성화 되어 있음
+	마이페이지 접속시 
+	- input text로 즉시 수정이 가능할 수 있도록 화면 구현
+	- 하단에 수정하기 및 회원탈퇴 버튼 구성 -> control -> 반영결과 알림
+
+	[ 메인 -> 상품명 검색 (☆search.jsp) ]
+	메인에서 검색할 텍스트를 입력하고 검색아이콘을 클릭 -> control
+
+ 	[ 메인 -> 상품구매(☆buy.jsp) ]
+	목록에 나와있는 상품의 구매개수와 구매/장바구니 버튼을 클릭하면 "결제창으로 이동"
+	buy.jsp -> 담았던 상품목록을 보여주며 총 결제금액을 하단에 명시
+		  결제하기 버튼을 클릭시 구매완료 페이지로 이동(☆buyApply.jsp) 
+		  buyApply페이지는 메인페이지 이동 버튼이 배치되어있음
+
+	[ DB Table ]
+	
+	■ member
+	 mnum (PK)
+	 userID
+	 userPW
+	 userName
+
+	■ product
+	 mnum (FK)
+	 pnum (PK)
+	 pName 
+	 price
+	 cnt	
+	
