@@ -1,0 +1,181 @@
+EL과 JSTL이 같이 활용된다.
+--> V에서 사용하기 위함이기 때문
+
+-> EL은 출력,scope객체/변수 대체
+-> JSTL은 기능(함수) 대체
+
+		<예제1>
+		<!-- 그대로 읽지말라는 속성추가  escapeXml == style적용을 위함(안하면 스타일이 text로 나옴)-->
+		<!-- 아래 코드보다 if else로 사용하는 경우가 더 많다 -->
+		<td><c:out value="${v.email}" escapeXml="false"><font color="red">email 정보없음</c:out></td> <!-- 출력 c:out 많이는 안쓰임> 이메일이 빠졌을 때 --email정보없음 -->
+		<!-- 데이터가 없을때 태그바디에 있는 텍스트가 출력 될 수 있었던건, -->
+		<!-- EL식에서 입력이안되어있으면 null인데, (출력되지는 않음 왜냐하면 string이니까) -->
+		<!-- null이라면 태그바디를 출력하는 기능인 것이다. -->
+		
+		<!--  <td><c:out value="${v.email}"><font color="red">email 정보없음</c:out></td>-->
+
+[기능]
+☆ catch : 오류문
+<!-- isErrorPage로 더 많이사용함!! ↓ 안쓸수록 좋다. (코드결함을 인지하고있기때문) 테스트용!-->
+<!-- try-catch문 과 동일한 기능 -->
+<c:catch var="errMsg"> <!-- 에러명을 변수에 저장 -->
+	<%= 10/0 %>
+</c:catch>
+${errMsg}  <!-- 에러가발생했다면 수행, 안했다면 미수행 -->
+
+☆ set : 변수 생성 및 초기화
+☆ remove : 변수 제거
+<!-- int i =10 처럼 변수를 만들 수 있다. -->
+<c:set var="msg" value="안녕하세요!"/> <!-- scope는 page로 default 적용된다. == page에서만 사용가능 - 다른스코프는 자주 사용되진 않는다. -->
+<c:remove var="msg"/> <!-- 변수를 지울 수 있다. -->
+
+<c:set target="${member}" property="email" value="lyena8958@gmail.com"/>
+
+☆ out(보통은 EL로 대체하여 많이 사용한다.)
+		<!-- 아래 코드보다 if else로 사용하는 경우가 더 많다 -->
+		<td><c:out value="${v.email}" escapeXml="false"><font color="red">email 정보없음</c:out></td> <!-- 출력 c:out 많이는 안쓰임> 이메일이 빠졌을 때 --email정보없음 -->
+		<!-- 데이터가 없을때 태그바디에 있는 텍스트가 출력 될 수 있었던건, -->
+		<!-- EL식에서 입력이안되어있으면 null인데, (출력되지는 않음 왜냐하면 string이니까) -->
+		<!-- null이라면 태그바디를 출력하는 기능인 것이다. -->
+
+☆ if(else문은 지원하지 않으니 if에서 반대조건문을 작성하자)	
+<!-- else를 지원하지 않는다. -->				<!-- res는 결과를 저장한다고 한다. -->
+<c:if test="${msg =='test'}" var="res"> <!-- test : 속성을 입력하지 않았는데도 나온경우는 >> 필수속성이다. -->
+	1-결과는  [${res}] 입니다. <!-- 바디태그 -->
+
+</c:if> (관리자,사용자, 로그인,아웃 때 주로 사용)
+<!-- res는 if문밖에서도 사용이 가능하다. == false, true-->
+<!-- else대체 -->
+<c:if test="${msg !='test'}" var="res"> <!-- test : 속성을 입력하지 않았는데도 나온경우는 >> 필수속성이다. -->
+	2-결과는  [${res}] 입니다. <!-- 바디태그 -->
+</c:if>
+		
+
+☆ choose (switch문 흡사)
+☆ when : case1..2..
+☆ otherwise : default값 (처음부터 값이 들어가있고, case가 모두 아니라면 값을 넣음)
+<c:choose>
+	<c:when test="${param.test=='a' }"> <!-- case1 -->
+		a를 선택했습니다.
+	</c:when>
+	<c:when test="${param.test=='b' }"> <!-- case2 -->
+		b를 선택했습니다.
+	</c:when>
+	<c:otherwise> <!--보통은 when을 더 추가해서 쓴다 (안정성, 유지보수성) --> <!-- a도 b도 아니라면 default처럼 사용-->
+		c를 선택했습니다. 	
+	</c:otherwise>
+</c:choose>
+
+☆ import (자원활용)
+<!-- jsp:include -->
+	<!-- 이때 가져오는 페이지는 "자원"이라고 한다. -->
+<!-- 내부자원 넣기 -->
+<!-- jsp include와 비슷한 기능이다 -->
+<c:import url="NewFile0.jsp" var="innerURL"/>
+<c:out value="${innerURL}" escapeXml="false"/>
+
+<hr>
+
+<!-- 외부자원 넣기 -->
+<c:import url="https://www.naver.com/" var="outerURL"/>
+<c:out value="${outerURL}" escapeXml="false"/>
+
+</body>
+</html>
+
+☆ url
+☆ param
+		<!-- get방식으로 param을 보내줄수있는것이다. --> <!--  href랑 같이 사용이된다. -->
+		<!-- NewFile3.jsp에 param을 넣기위함 -->
+<c:url value="NewFile2.jsp" var="testURL">
+	<c:param name="test">b</c:param>
+</c:url>
+<h2>${testURL }</h2>
+<a href="${testURL}">눌러보세요!</a>
+
+</body>
+</html>
+
+
+☆ redirect
+<!-- 예제를 실행하면 본페이지가 아닌 url페이지가 실행된다.
+- url http://localhost:8080/day51_0907/NewFile2.jsp;jsessionid=37292661C59690B448737702DECA1500?test=a
+<!-- NF5와 달리 url자체를 보내주는역할 -->
+<!-- redirect 대체사용 -->
+<c:redirect url="NewFile2.jsp">
+	<c:param name="test">a</c:param>
+</c:redirect>
+
+
+<활용에 좋은 예제>-----------------------------------------------------------------------------------------------------
+<form>
+	<select name="test">
+		<option>-</option> <!-- 선택한 항목을 고정시키고싶다 == 삼항연산자활용 -->
+		<option ${param.test=='a'? 'selected':'' }>a</option>
+		<option ${param.test=='b'? 'selected':'' }>b</option>
+		<option ${param.test=='c'? 'selected':'' }>c</option>
+				<!-- 한페이지에서 장바구니 여러개 담는 것처럼 -->
+	</select>
+	<input type="submit" value="선택완료">
+</form>
+<hr>
+
+<!--여기서 test인자를 부르고 싶다면  -->
+<!-- $param.test로 EL식으로 부를 수 있다. -->
+
+<!-- 스위치문과 흡사 -->
+<c:choose>
+	<c:when test="${param.test=='a' }"> <!-- case1 -->
+		a를 선택했습니다.
+	</c:when>
+	<c:when test="${param.test=='b' }"> <!-- case2 -->
+		b를 선택했습니다.
+	</c:when>
+	<c:otherwise> <!--보통은 when을 더 추가해서 쓴다 (안정성, 유지보수성) --> <!-- a도 b도 아니라면 default처럼 사용-->
+		c를 선택했습니다. 	
+	</c:otherwise>
+</c:choose>
+
+</body>
+</html>
+--------------------------------------------------------------------------------------------------------------------
+<!-- 강사님풀이 -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="java.util.ArrayList"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<%
+	ArrayList<String> datas = new ArrayList();
+	datas.add("apple");
+	datas.add("사과");
+	pageContext.setAttribute("datas", datas);
+%>
+<c:forEach var="v" items="${datas }">
+	<li>${v}</li>
+</c:forEach>
+
+<!-- 
+그 EL에쓴 param이랑 스크립트 릿에서쓴 request.getParameter 이랑 같은의미가맞는건가요?
+   >> 같은 의미는 아니지만 서로 간에 이용이 가능하다.
+ -->
+ 
+<form>
+	<input type="number" name="num" value="0">
+	<input type="submit" value="확인">
+</form>
+<hr>	
+<% request.getParameter("num"); %>
+<c:if test="${param.num%2==0 }">
+	짝수
+</c:if>
+<c:if test="${param.num%2!=0 }">
+	짝수
+</c:if>
+</body>
+</html>
