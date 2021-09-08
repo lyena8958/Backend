@@ -1,0 +1,47 @@
+모두 DAO에 해당
+
+☆[DBCP PART]☆
+context.xml 에서 자원설정
+
+↕DBCP==DataSource에 DB로드하기 위해서 JNDI를 거침
+
+☆[JNDI PART]☆
+Context 클래스가 context.xml을 뜻하는 거고, 
+IntiialContext는 네이밍(JNDI)을 넣기위해 객체화를 해줌 (lookup으로 소스객체를 넣어줄예정)
+  └ 이에따라 context.xml에서 커넥션 풀 자원등록했던 거에 접근할 수 있게됨
+→ 
+(낮은 결합도를 위해 두 분류를 나눠서 넣어줌- fix/유동)
+context envContext는 고정 루트경로를 넣어주고("java:/comp/env")  [fix]
+DataSource에다가 = 작성되었던 envContext에 ("jdbc/orcl" or "jdbc/mysql")context.xml에 작성한 name입력 [유동적으로 사용할수있게]
+  └여기서 DataSource ds는 등록했던 context.xml에서 접근하기 위함
+
+
+↓----------------------------------------------------------------
+Connection에다가는 드라이버 대신인 DataSource(DBCP)를 넣어줌에 따라 DB연결
+
+
+↓
+연결해제 -> DataSource에서 자원반납 체크
+
+
+=========================================================
+connection 
+CRUD 메서드를
+수행할때마다 conn을 만든다.
+
+
+그럼그게 context.xml <> web.xml에서 객체를 설정/참조함에따라서 
+ →context.xml를 최소한 5개를 설정 --> (동시다발적으로 db접근이 가능한게 5명)
+   └ 이후 사용이 끝나면 바로 자원반납을해주고 반복함 (재활용식)
+
+
+JDBC
+초기 : conn0개
+게시판이용(두사람이 글씀) :  conn 2개
+
+
+CBCP
+초기 : conn 5개
+그럼그게 context.xml <> web.xml에서 객체를 설정/참조함에따라서 5개가 fix가 되는건가요? yes
+그러니까 사람들이 DB에 접근(게시물쓰기)가 가능한게 한번에 5명이란거네용 yes!
+그러면 사용이끝나면 바로 자원반납을해주고 이런걸 계속 반복하는거네용? yes!

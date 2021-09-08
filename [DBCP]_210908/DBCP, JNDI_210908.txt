@@ -1,0 +1,127 @@
+서버 프로그래밍
+
+MVC
+.jsp -> V : 
+	ㆍEL${} 
+	ㆍ커스텀태그(가장마지막에 작업이 들어간다.로그인/아웃)- 파일기반, 핸들러기반
+	ㆍJSTL
+
+
+
+control.jsp -> .java (서블릿변환) => C
+
+
+
+DAO, VO -> M
+	ㆍDBCP (Data Base Connection Pull)로 JDBC로 하나씩 연결하지않고 사용해볼 예정
+	   (JDBC에서 성능향상을 위해 사용-JDBC는 성능 면에서 안좋다)
+
+
+[ DBCP ]
+사용이유? DB 연결 성능이 향상되기 때문
+
+	DB 연결성능 향상
+	- 커넥션 -
+	   : 앱과 DB의 연결
+	     DB에 접속하고 종료하는 일련의 동작과정
+	     연결 -> 시스템 부하 -> 기업의 입장에서는 비용손실
+	     close를 안하면 개인실습에서는 문제가 안보일 수 있으나, 기업에서 활용시 
+	        └최대연결 커넥션초과로 DB접속이 아예불가능 (지하철이 꽉차면 사람이 못타는 것처럼)
+	         => 클라이언트-DB데이터-----------서버DB (DB데이터 ex. 커피 메뉴 사진, 금액--업데이트시 동기화필요)
+	         데이터일치를 위한 알고리즘, 보안 필요함!
+
+	- 트랜잭션
+	   : 여러작업을 하나의 작업처럼 단위화
+	     작업단위 
+
+
+시스템 부하를 없애기 위한 등장한 개념
+
+
+[ DBCP ]
+
+  일정한 개수의 커넥션을 미리 확보
+  확보한 커넥션을 앱에 제공하는 서비스(DBCP가 미리확보를 해두어 클라이언트와 연결을 하지않고도 제공을 해준다.)
+  자원이 확보되어있는 물탱크같은 개념
+이용순서
+1) 웹 어플리케이션 서버(톰캣)가 시작 → 커넥션을 풀에 "미리 생성"
+2) 생성된 커넥션 객체를 요청이 들어왔을 때 전달 - JNDI 이용됨
+	JNDI(Java Naming and Directory Interface)
+	 : 어떤 과정이나 절차, 알고리즘 등을 캡슐화하여 처리
+	   네이밍서비스(naver google 주민번호가 있지만 이름으로 불리듯이) -> 가상의 이름. 연결 자바객체, 서비스파일, 서버(자체) 등을 연결해줌
+3) 사용하지않는 커넥션 종료, 최소한의 커넥션을 유지
+	    DBCP
+	─        
+DB 	─         ─  사용시 JNDI
+	─
+
+커넥션풀
+서버 종속적이었음.... 톰캣은 톰캣DBCP, 다른서버 각 DBCP가 존재
+ └ 개발자가 직접 클래스 구현->호환xxx, 성능보장xxx 
+     의존적이라서 변경이 어렵다.
+A서비스, 서버를 이용하자! --------------------------> 고정
+▶톰캣에 DBCP 내장됨
+   다른 DBCP를 추가 설치하면 충돌 위험이 있다
+   DBCP : JDBC에서 제공하는 DataSource 인터페이스를 활용
+   JNDI를 통해 DataSource 인터페이스를 제공받을 수 있음 (설정을 통해서 인터페이스를 제공받을 것이다.)
+    마치 naver. google처럼 
+
+
+
+사용방법
+1. 톰캣서버에 DataSource를 등록 
+	server.xml OR context.xml(이걸로 할 예정) - server.xml :톰캣서버에 대한 설정이 다 들어 있어서 잘못 건드리면..... 큰일 남...
+	( .xml -> "설정" )
+            -> workspace  -> Servers폴더 -> tomcat...파일안에 들어있음
+	: DBCP 자원등록설정
+2. JNDI 연결할 때 필요한 각종 설정 추가
+	웹 어플리케이션에서 참조하는 각종 서버 리소스에 대한 설정을 변경해야 함
+	    └ == 톰캣에서 돌릴 때 나오는 프로그램에서 리소스에 접근을 할건데, 설정을 변경해야한다.
+	web.xml
+
+
+<DBCP설정>
+- context.xml 메모장키면
+  대부분 주석이고 		Elements == 요소 == 태그 (HTML rootElements == HTML코드)
+  아래처럼 되어있다. <Context> -> rootElements 
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <WatchedResource>WEB-INF/web.xml</WatchedResource>
+    <WatchedResource>${catalina.base}/conf/web.xml</WatchedResource> </Context>
+
+- context.xml 설정(커넥션 풀 자원등록☆)
+<Resource maxIdle="5" maxActive="10" username="kim" password="8958" url="jdbc:oracle:thin:@localhost:1521:xe" auth="Container" driverClassName="oracle.jdbc.driver.OracleDriver" name="jdbc/orcl" type="javax.sql.DaraSource" />
+
+↓ 내용설명
+{
+- 자원설정 (하나로 5개~최대 10개 사용)		   오라클 계정이름	오라클 비밀번호		url
+<Resource maxldle="5" maxActive="10" username="kim"  password="8958 url="jdbc:oracle:thin:@localhost:1521:xe"
+ 권한=컨테이너		드라이버주소
+auth="Container"	driverClassName="oracle.jdbc.driver.OracleDriver"  name="jdbc/orcl" type="javax.sql.DaraSource"
+
+
+(기존방식) 다이렉트로 전달하는 방식
+클라이언트 → 웹 → JDBC → DB
+
+웹프로그램에게 요청하는 것은 같다
+
+(DBCP방식)
+                ↓ (웹 -> JNDI)
+클라이언트 → DBCP → DB
+JDBC대신 JNDI로 사용하여 DBCP에 연결할 수 있다.
+}
+
+  ↓ 이어서
+
+- WEB-INF > NEW - XML File -> web.xml 파일생성 
+아래 내용 작성
+<!-- 웹어플리케이션(우리가만든프로그램)참조하는 프로그램이다. -> 서버에 관련된 자원을 보기위해서 우리 서버가 jndi를 보기위함 -> 무얼 볼건지를 작성하는 부분이 web.xml이다 -->
+
+<!-- context.xml에 작성된 내용을 가져옴 > 등록한 내용을 객체에 참조하겠다.-->
+<resource-ref>
+	<res-auth>Container</res-auth>
+	<res-type>javax.sql.DataSource</res-type>
+	<res-ref-name>jdbc/orcl</res-ref-name> 
+</resource-ref>
+
+  ↓ 이어서

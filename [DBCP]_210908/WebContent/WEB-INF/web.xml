@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 웹어플리케이션(우리가만든프로그램)참조하는 프로그램이다. -> 서버에 관련된 자원을 보기위해서 우리 서버가 jndi를 보기위함 -> 무얼 볼건지를 작성하는 부분이 web.xml이다 -->
+
+<!-- context.xml에 작성된 내용을 가져옴 > 등록한 내용을 객체에 참조하겠다.-->
+<resource-ref>
+	<res-auth>Container</res-auth>
+	<res-type>javax.sql.DataSource</res-type>
+	<res-ref-name>jdbc/orcl</res-ref-name> 
+</resource-ref>
