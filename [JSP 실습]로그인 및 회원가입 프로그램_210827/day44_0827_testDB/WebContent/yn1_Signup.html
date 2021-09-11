@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입</title>
+<style>
+@import
+	url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap')
+	;
+
+* {
+	font-family: 'Gowun Dodum', sans-serif;
+}
+
+table {
+	width: 0 auto;
+}
+a{
+	text-decoration : none;
+	color : black;
+}
+</style>
+</head>
+<body>
+
+
+	<header>
+		<h2>참치라이더 회원가입 창입니다.</h2>
+	</header>
+	<form action="yn1_SignupCheck.jsp" method="post">
+		<table>
+			<tr>
+				<td>성명</td>
+				<td><input type="text" name="userName" required maxlength="15"></td>
+			</tr>
+			<tr>
+				<td>아이디</td>
+				<td><input type="text" name="userID" required minlength="5"
+					maxlength="15">
+				</td>
+			</tr>
+			<tr>
+				<td>비밀번호</td>
+				<td><input type="password" name="userPW" minlength="5"
+					maxlength="20" required>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="3" align="right"><input type="submit" value="가입하기"></td>
+			</tr>
+		</table>
+	</form>
+	
+
+</body>
+</html>
