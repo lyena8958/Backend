@@ -1,0 +1,33 @@
+@charset "UTF-8";
+#content{
+	float : left;
+	width : 70%;
+}
+.size{
+	width: 300px;
+}
+button{
+	display : inline;
+}
+#logo{
+	text-decoration : none;
+	color : hotpink;
+	text-decoration :  underline;
+}
+#ad{
+	border : solid 1px lightgray;
+	padding :10px;
+	float : right;
+}
+#ad ul li a img{
+	width : 300px;
+	height : 300px;
+
+}
+#ad ul{
+	list-style : none;
+}
+.hr{
+	list-style : none;
+	
+}
