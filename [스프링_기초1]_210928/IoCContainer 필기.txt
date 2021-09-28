@@ -1,0 +1,139 @@
+스프링
+	IoC AOP 경량을 지원하는 프레임워크
+# 파일옆에 S가 붙어져있는건, Spring 관리에 들어가있다는 것, 코드를 지우면 S아이콘이 사라짐..!!!
+# 제어의 역행은 applicatrionContext.xml이 필요하다.
+# 요약) Spring 컨테이너 == applicationContext.xml (IoC 제어역행처리)
+# S아이콘이 있는지 없는지 잘 확인하자!! (표시되어있으면, 컨테이너 관리대상 //없으면 미관리대상)
+
+[210928]
+	☆IoC컨테이너 (제어의 역행)
+	-> 객체를 어떻게 관리할지에 대한 설정파일이 필요(.xml)
+	-> Servlet 컨테이너도 IoC컨테이너이다.
+		1. 서블릿 클래스 --인스턴스화--> 객체
+		2. web.xml 설정 (.do를 클래스로 mapping하듯이)
+	            └ Spring에서는 applicationContext.xml이 되며, bean 엘리먼트로 관리하게 된다.
+
+     ◎0. 스프링 컨테이너가 관리할 클래스를 등록할 설정파일
+       == applicationContext.xml
+       ○bean
+	- Class를 다른말로 beans빈즈 라고할 수 있다.
+	- 빈즈 엘리먼트에 빈으로 설정을한다.
+	<bean>갤럭시</bean>
+	<bean>아이폰</bean>
+	(bean 1 : 객체 1)
+	즉슨, new를 대신 빈즈에서 처리한다. == 결합도가 낮아진다.
+
+          <bean>는 보통은 기본생성자로 만들기 때문에 기본생성자가 필수이다. (기본은 90%임)
+	기본생성자 인자가 필요하다면?
+	<bean ...>
+		<property..> </property>
+	</bean>
+	
+	사용법 ex)  class 필수속성 = "패키지명.Class명"
+	빈 엘리먼트의 기본 form -- 이를 스프링 컨테이너가 관리해줌
+	Class는 필수속성이며, id는 매번써줄 것이다. (객체명) == (객체화) look up을 할 수가 있다.
+	<bean class="text.Test" id="test"/>	 	== 		Test test = new Test();
+
+       ○Namespaces --- Namespaces 가 안뜨면 beans에 수기로 경로를 추가해준다.
+	아래 Source 우측에 Namespaces를 클릭하면 나오는데
+	aop 클릭하고 다시 applicationContext.xml로 돌아오면 엘리먼츠(태그)사용이 가능해짐
+
+Q 강사님 그러면 JSP에 사용한 useBean도 이것처럼 설정이되어있던건가여? -- 내부설정은 다르지만, 맞다.
+
+
+       ◎ 1. 스프링 컨테이너를 동작시켜보자!~~
+	스프링 컨테이너 동작시키는 코드 :  아래 부모 자식간으로 "상속"관계이다.
+	AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+	왼 부모					우 자식
+						뒤에 자식은 사용용도에 따라 바뀔 수 있다. (위는 console)
+	factory? 객체를 여러개 찍어내는 것
+
+	이후 위 코드를 적재(로딩)해서 동작할 수 있게된다.
+
+
+          2. 객체를 요청하면, 해당 객체를 준다!
+	 == 객체요청: Look up  (DBCP에서 했던 것)
+	Test test = (Test)factory.getBean("test");	--- 이때 getBean인자는 applicationContext.xml에서 설정한 id로 입력
+	t.pring(); --- 메서드 호출
+   	  					 //  없는 id명으로 지정한 경우, null이 아닌 Exception오류가 발생한다.
+      	  					 // 해당 부분에 대해서는 else류의 코드를 추가하여 설정할 것임.
+          3. 스프링 컨테이너 종료
+	factory.close();
+
+          // 이후 => Console
+          // 현재 <bean> 등록된 모든 클래스에 대한 객체를 미리 만들어놓음 		applicationContext.xml에 있던 bean을 모두 생성시킨다.
+	 해서 Class 기본생성자가 호출이된다.
+
+
+--> 메이플 게임에서 단축키 설정하는 것도 이렇게 look up을 해서 되는 것이다.
+
+++ 3. factroy.close()를 하는 이유??
+	factory close()를 하지않으면, JVM GC가 열려있던 facory를 조사해서, 미사용중이구나 파악하고, 닫아주어야합니다.
+	위의 과정을 저희가 쉽게 close()로 해결할수있기때문에 안정적이어서 작성했습니다.
+
+	없어도 무방하며,
+
+	여러번 작업할확률이 높기에(우리는 한번에 잘안나올때도 있으니까...)
+
+	닫는것을 권장! 합니당
+	 ---> 마치 DBCP같은 개념~!!!!!
+
+==============================================================
+1~2 추가예시
+
+<bean class="test.GaPhone" id="Ga" />
+<bean class="test.IPhone" id="I" />
+
+↓
+Phone phone = (Phone)factory.getBean("Ga");
+or
+Phone phone = (Phone)factory.getBean("I");
+
+phone.powerOn();
+
+== 결합도가 낮아졌다.
+==============================================================
+
+로그 -- Spring이 실행되면 콘솔에 출력됨 (서버도!)
+
+INFO : org.springframework.beans.factory.xml.XmlBeanDefinitionReader - Loading XML bean definitions from class path resource [applicationContext.xml]
+INFO : org.springframework.context.support.GenericXmlApplicationContext - Refreshing org.springframework.context.support.GenericXmlApplicationContext@75a1cd57: startup date [Tue Sep 28 11:02:43 KST 2021]; root of context hierarchy
+기본생성자
+출력
+INFO : org.springframework.context.support.GenericXmlApplicationContext - Closing org.springframework.context.support.GenericXmlApplicationContext@75a1cd57: startup date [Tue Sep 28 11:02:43 KST 2021]; root of context hierarchy
+==============================================================
+
+다음 실습
+
+예시로 빈이 빈즈에서 여러개 설정이 되어있는데,
+사용하는 건 1개라고 가정을 했을 때, 
+ - pre-loaging을 사용해서 즉시 로딩으로 -- POJO로 실행되어 가벼운 편이기 때문에 괜찮다. (리스너, 필터처럼)
+ - 만약에, 정~~말가끔 사용하는 거라면, 빈 속성에서 설정할 수 있다. → lazy loading 지연 로딩처리함
+<bean class="test.IPhone" id="I" />
+<bean class="test.IPhone" id="I" />
+<bean class="test.IPhone" id="I" />
+<bean class="test.IPhone" id="I" />
+
+↓ 
+Test t=(Test)factory.getBean("test");
+
+
+
+
+------------------------------------------------------------------------------------------
+▶️설정한 스프링컨테이너(applicationContext) 동작
+AbstractApplicationContext factory = new GenericXmlApplicationContext("applicationContext.xml");
+	== new BeanFactory();
+
+▶️빈즈Class 호출
+(캐스팅)factory.getBean("test");
+	== (캐스팅)factory.getBean(args[0]);
+-----------------------------------------------------------------------------------------
+
+
+src/main/java -> com.kim.app 패키지가 있는곳. 여기에 코드(Client 등) 작성
+
+src/main/resources -> .xml 류가 들어있는 곳
+
+
+
