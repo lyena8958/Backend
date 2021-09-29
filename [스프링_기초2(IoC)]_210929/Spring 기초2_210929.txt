@@ -1,0 +1,95 @@
+컨테이너가 객체를 관리~~ -> IoC
+
+xml ? --> 설정파일
+
+servlet container --> applicationContext
+
+applicationContext.xml이 뭐하는??
+  IoC 지원 스프링 컨테이너의 설정파일
+  -> IoC(제어의 역행) new를 개발자가 아니라, 컨테이너가 "객체를 관리"
+
+
+<beans> 루트 엘리먼트
+
+pom.xml은 
+	jar파일을 관리(자원을 관리)하는 것이다.
+	ex. Maven Dependencies
+
+
+bean에서
+기본생성자(디폴트 생성자)는 "반드시" 필요하다 --> 없을시 에러발생
+객체를 생성해서 관리할 때  기본생성자만을 인식하기 때문이다.
+	(이는 서블릿 컨테이너도 기본생성자가 필요했었다.)
+
+
+생성자에서 설정을 못했을 때,
+init-method="메서드 명"  : 속성을 엘리먼트에 넣어서 활용해볼 수 있다. (초기화 함수 -- 객체화 이후에 호출됨) --- ex connection관련 객체를 이용
+destroy-method="메서드 명" : DAO나 DBCP와 같이 DB의 connection관련 객체를 이용할 때는 연결을 해지해줌 (객체가 삭제될 때 호출됨)
+			물론 안쓰면 가비지컬렉터가 관리해주기 때문에 상관없으나, 권장이기 때문에 해주자
+
+
+
+스프링 컨테이너는 구동이되면
+"빈을 모두 생성"시킨다. == pre-loading
+
+
+lazy-init 속성을 통해서 해당 객체의 메모리에 적재를 컨트롤할 수 있다. --> 필요할 때만 사용
+		(많이 사용되지는 않는다고 함, 많이 무겁다거나 객체가 많을 때 사용해볼 수 있다.)
+기본적인 lazy-init="false"이기 때문에 true로 변경하면 필요할 때만 사용할 수 있게 된다.
+
+
+new Object();	 == 	<bean class="test.Test" id="test">
+
+
+Object obj = new Object();		Object obj = new Object();		
+-----------------------------------   →	
+Object obj2 = new Object();		Object obj2 = obj;  (메모리를 최적화하자!)
+new생성하면 그만큼 메모리가 차지	"개발자"
+				- 모르는 사이에.. 객체가 쌓인다..
+			         => 하나만 생성해서써도 괜찮은 객체들!
+			         --> 이런식의 개발방식을 == 싱글톤 패턴이라고 한다.
+
+해서 == 
+<bean class="test.Test" id="test" lazy-init="true" scope="singleton"/>
+하나의 객체를 공유하는 것(DAO처럼)
+어..그치만 scope="singleton"은 디폴트이기 때문에 속성을 추가하지않아도됨
+
+
+프로토타입 scope는 싱글톤 scope과 달리 IoC에서 빈을 받아올때마다 매번 인스턴스를 새로 생성한다.
+그래서, 이는 객체 생성이 반복된다.
+ scope="prototype"
+
+
+인자를 넣을때는
+bean 바디태그에 입력함
+생성자에게 인자를 넘겨줌 == constructor-arg ,  인자객체 == ref="sw"
+<constructor-arg ref="sw"></constructor-arg>
+		↓ 값을 넣을 때
+<constructor-arg value="값"></constructor-arg>
+
+
+추가로 생성자가 많거나 하는 경우,
+어노테이션을 통해서 줄일 수 있다.
+
+제어의역행 (개발자가 new를 쓰면 싱글톤 패턴을 유지하기가 어렵고, 널인셉션이 발생할 수도있다.
+		그걸 컨테이너가 하면, 즉 DI의존성주입을 하면 xml에서 설정을한다.)
+객체 생성 및 결합관리를 컨테이너
+  이를 IoC 지원한다고 함
+  IoC 내에서 DI 의존성 주입  == 유지보수 극대화
+  결합관계를 xml에 입력을하면, 컨테이너가 관리를 해준다.
+
+DI 의존성 주입 
+- 각 클래스간의 의존관계를 빈 설정(Bean Definition) 정보를 바탕으로 컨테이너가 자동으로 연결해주는 것 (의존성)
+- 세터 주입과 생성자 주입을 같이쓰지않으며, 회사별로 택일이 다르다.
+ 	=> Setter Injection	세터 주입 (주로 씀!)
+	 => Constructor Injection	생성자 주입(이번에(210929) 한거)
+[Constructor Injection 예시]
+   <bean class="oven.B_Oven" id="oven">
+   		<constructor-arg ref="lRemote"></constructor-arg>
+   		<!--<constructor-arg ref="sRemote"></constructor-arg>  -->
+   </bean>   
+   <bean class="oven.Sam_Remote" id="sRemote"></bean>
+   <bean class="oven.LG_Remote" id="lRemote"></bean>
+
+
+
