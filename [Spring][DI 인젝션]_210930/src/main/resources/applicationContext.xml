@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!-- 수업 0929-->
+	<!-- DI-생성자 인젝션 -->
+<!--    <bean class="test.GaPhone" id="phone" lazy-init="true"> 2객체화
+   		<constructor-arg ref="aw"></constructor-arg>
+   		<constructor-arg value="사용자이름"></constructor-arg>
+   </bean> -->
+
+   
+   <bean class="test.SmartWatch" id="sw" lazy-init="true" /> 
+   <bean class="test.AppleWatch" id="aw" lazy-init="true" /> <!-- 1객체화 -->
+   
+   
+<!-- 수업 0930-->   
+   <!-- DI-setter 인젝션(setXxx로 불러오기 때문에 카멜형식으로 맞게 작성) -->
+   
+      <!-- p네임스페이스 "사용 후" -->
+<!-- 	<bean class="test.IPhone" id="phone" p:watch-ref="aw" p:num="1234" lazy-init="true">
+		<property name="watch" ref="aw"></property> 
+		<property name="watch" ref="test.SmartWatch"></property>  == ref="aw" 
+		<property name="num" value="1234"></property>
+	
+	</bean> -->
+   
+      <!-- p네임스페이스 "사용 전" 사용은 property 태그로 더 많이 사용됨..!! (객체명이나 변경될 수 있으니) -->
+<!--    	<bean class="test.IPhone" id="phone" p:watch-ref="aw" p:num="1234">
+		<property name="watch" ref="aw"></property> 
+		<property name="num" value="1234"></property>
+	
+	</bean> -->
+   
+   
+   
+   
+ 
+ 
+ 
+<!-- 개인실습 -->
+	<!-- 0929 생성자 인젝션 -->
+<!--    <bean class="oven.B_Oven" id="oven" >
+   		<constructor-arg ref="sRemote"></constructor-arg>
+   </bean> -->
+   
+   
+   <bean class="oven.B_Oven" id="oven">
+   		<property name="app" ref="lApp"/>
+   </bean>
+   
+   
+   <bean class="oven.Sam_App" id="sApp" ></bean>
+   <bean class="oven.LG_App" id="lApp" ></bean>
+   
+</beans>
