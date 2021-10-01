@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<bean class="test.CBean" id="cb">
+<!-- 	<property name="list">
+		<list>
+			<value>apple</value>	제네릭이 들어가있어 스트링 작성가능
+			<value>바나나</value>
+			<value>키위는 맛있다!</value>
+		</list>
+	</property> -->
+	<property name="map">
+		<map>
+			<entry>
+				<key><value>apple</value></key>
+				<value>사과</value>
+			</entry>
+			<entry>
+				<key><value>banana</value></key>
+				<value>바나나</value>
+			</entry>
+			<entry>
+				<key><value>kiwi</value></key>
+				<value>키위</value>
+			</entry>
+		</map>
+	</property>
+	
+</bean>
+
+
+<bean class="oven.LG_App" id="lApp"/>
+<bean class="oven.Sam_App" id="sApp"/>
+
+<!-- <bean class="oven.A_Oven" id="oven">
+	<property name="app" ref="lApp"/>
+	<property name="list">
+		<list>
+			<value>치킨</value>
+			<value>군 고구마</value>
+			<value>콘 치즈</value>
+			<value>또띠아 피자</value>
+			<value>베이커리</value>
+		</list>
+	</property>
+</bean> -->
+<bean class="oven.B_Oven" id="oven">
+	<property name="app" ref="sApp"/>
+	<property name="map">
+		<map>
+			<entry>
+				<key><value>설치</value></key>
+				<value>구매처에서 기사님께 요청하시면 고객님 자택까지 설치를 도와드리고 있습니다.</value>
+			</entry>
+			<entry>
+				<key><value>작동 방법</value></key>
+				<value>버튼을 클릭해 오븐 작동시간을 증감할 수 있습니다. app에서도 해당 기능 사용이 가능합니다.</value>
+			</entry>
+			<entry>
+				<key><value>고장</value></key>
+				<value>플라스틱, 철 등 식품이 아닌 물품을 오븐에 넣어 작동하시면 고장이 일어날 우려가 있습니다.</value>
+			</entry>
+			<entry>
+				<key><value>고객센터</value></key>
+				<value>Tel)02-0000-0000</value>
+			</entry>
+		</map>
+	</property>
+</bean>
+
+</beans>
