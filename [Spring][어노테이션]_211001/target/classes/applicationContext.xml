@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+
+	<!-- 생성자주입(인젝션) -->
+<!-- 	<bean class="test.Champ" id="champ">	Champ champ = new Champ(); 와 같다
+		<property name="name" value="티모"></property> #자료형
+		<property name="inven">	#컬렉션, 제네릭이 String이므로 스트링값만 입력이가능 
+			<list>
+				<value>내셔의 이빨</value>
+				<value>균열 생성기</value>
+				<value>리안드리</value>
+			</list>
+		</property>	
+		<property name="weapon" ref="test.Sword"></property> #객체
+	</bean>
+
+	<bean class="test.Sword" id="sword"></bean>
+	<bean class="test.Bow" id="bow"></bean> -->
+
+
+<!-- ↓↓↓↓ 요약 -->
+
+	<!-- 패키지 하위에 모든 것들이 관리대상으로 들어가게 된다. -->
+	<!-- 이후 각 클래스에 어노테이션 설정필요! -->
+	<context:component-scan base-package="test"></context:component-scan>
+
+	<!-- 설정이 자주 바뀌는 경우 빈으로 설정해보자! == 어노테이션과 빈을 적절히 사용해보자 -->
+	<!-- 어노테이션 설정으로 대체가 가능하지만, bean을 설정함으로써 객체를 모아서 볼 수 있기 때문에 가독성이 좋다. -->
+	<bean class="test.Sword" id="sword"></bean>
+	<bean class="test.Bow" id="bow"></bean>
+
+	<!-- 우리가 코드로 직접관리하는 로직이 아닌 것 : 로깅, 트랜잭션, 보안 ...  -->
+
+</beans>
