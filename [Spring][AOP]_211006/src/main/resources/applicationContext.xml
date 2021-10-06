@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+	<context:component-scan base-package="model"></context:component-scan>
+	
+	<!-- 이로써 횡단관심을 변경할 때 POJO를 건드리지않고 아래 설정에서만 변경이 가능하여, -->
+	<!-- 유지보수성이 향상된다. (높은 응집도) -->
+	
+	<bean class="com.lee.app.common.LogAdvice" id="log2"/>
+	<bean class="com.lee.app.common.LogPlusAdvice" id="log"/>
+	
+	<!-- 전체 <aop:pointcut expression="execution(* model.board.*Impl.*(..))" id="aPointcut"/> -->
+	<!-- INSERT만 <aop:pointcut expression="execution(* model.board.*Impl.insert*(..))" id="aPointcut"/> -->
+	<aop:config>
+		<aop:pointcut expression="execution(* model.board.*Impl.select*(..))" id="aPointcut"/>
+		<aop:aspect ref="log"> 
+			<aop:before method="printPlusLog" pointcut-ref="aPointcut"/>
+		</aop:aspect>
+	</aop:config>
+<!-- <aop:before method="printPlusLog" pointcut-ref="aPointcut"/> -->
+</beans>
