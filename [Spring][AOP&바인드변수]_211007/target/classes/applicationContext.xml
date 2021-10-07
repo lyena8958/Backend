@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd">
+
+	<context:component-scan base-package="model"></context:component-scan>
+	
+	<!-- 이로써 횡단관심을 변경할 때 POJO를 건드리지않고 아래 설정에서만 변경이 가능하여, -->
+	<!-- 유지보수성이 향상된다. (높은 응집도) -->
+	
+	<!-- <bean class="com.lee.app.common.LogPlusAdvice" id="log"/> -->
+		<bean class="com.lee.app.common.LogAdvice" id="log"/>
+	<bean class="com.lee.app.common.AfterAdvice" id="aAdvice"/>
+	<bean class="com.lee.app.common.AfterReturningAdvice" id="arAdvice"/>
+	<bean class="com.lee.app.common.AfterThrowingAdvice" id="atAdvice"/>
+	<bean class="com.lee.app.common.AroundAdvice" id="aroundAdvice"/>
+	
+	
+	<aop:config>
+		<aop:pointcut expression="execution(* model.board.*Impl.get*(..))" id="aPointcut"/>
+		<aop:pointcut expression="execution(* model.board.*Impl.*(..))" id="bPointcut"/>
+		<aop:pointcut expression="execution(* model.member.*Impl.get*(..))" id="cPointcut"/>
+				
+		<!-- after -->
+        <aop:aspect ref="aAdvice"> 
+			<aop:after method="printLog" pointcut-ref="bPointcut"/>
+		</aop:aspect>
+		
+		<!-- after-returning -->		
+		<aop:aspect ref="arAdvice"> 
+			<aop:after-returning method="printLog" pointcut-ref="aPointcut"/>
+		</aop:aspect>
+		
+		<!-- after-throwing -->	
+	    <aop:aspect ref="atAdvice"> 
+			<aop:after-throwing method="printLog" pointcut-ref="bPointcut"/>
+		</aop:aspect>
+		
+		<!-- around -->	
+		<!-- <aop:aspect ref="aroundAdvice"> 
+			<aop:around method="printLog" pointcut-ref="bPointcut"/>
+		</aop:aspect>  -->
+		
+		<!-- after-returning2 -->	
+		<!-- <aop:aspect ref="arAdvice"> 
+			<aop:after-returning method="printLog" pointcut-ref="cPointcut" returning="obj"/>
+		</aop:aspect>   -->
+		
+		<!-- after-throwing2 -->	
+	<!-- 	<aop:aspect ref="atAdvice"> 
+			<aop:after-throwing method="printLog" pointcut-ref="bPointcut" throwing="excep"/>
+		</aop:aspect> -->  
+		
+		<!-- around2 -->	
+<!-- 		<aop:aspect ref="aroundAdvice"> 
+			<aop:around method="printLog" pointcut-ref="bPointcut"/>
+		</aop:aspect>  -->
+		
+	</aop:config>
+</beans>
