@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<!-- Component관련 어노테이션 -->
+	<context:component-scan base-package="model"></context:component-scan>
+	<context:component-scan base-package="com.lee.app.common"></context:component-scan>
+	
+	
+<!-- ////// -->
+	
+	<!-- 트랜잭션 -->
+	  <!-- ② 트랜잭션 관리자 등록(tm등록, 객체등록) -->
+	  <!-- property dataSource는 참조할 데이터가 없으니 등록을 해주어야 한다. -->
+	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <property name="dataSource" ref="dataSource" />
+    </bean>
+	
+	  <!-- ③ 메서드 advice 처리 -->
+	  <!-- id명(뭐라부를지), tm 설정한 관리자 입력 -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="get*" read-only="true"/> <!-- 어떤 메서드에 대해서 어떻게 등록할지(처리할지) -->
+			<tx:method name="*"/>
+		</tx:attributes>
+	</tx:advice>
+	
+	  <!-- ④ 메서드 advice 처리 -->
+	  <!-- get으로 시작하는거에 대해서는 read-only처리하여 무관~ -->
+	<aop:config><!-- 포인트컷은 이름 중복이 안되니 유의하자! -->
+		<aop:pointcut expression="execution(* model..*Impl.*(..))" id="tPointcut"/>
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="tPointcut"/>
+	</aop:config>
+	
+	
+<!-- ////// -->
+	
+	<!-- AOP관련 어노테이션 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+	<!-- JdbcTemplate -->
+		<!-- DB -->
+	 <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="kim"/>
+		<property name="password" value="8958"/>
+	</bean>
+	
+		<!-- JDBCTemplate -->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+
+</beans>
