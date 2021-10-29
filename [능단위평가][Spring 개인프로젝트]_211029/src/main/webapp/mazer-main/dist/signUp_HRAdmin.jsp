@@ -25,11 +25,11 @@
 			<div class="col-lg-5 col-12">
 				<div id="auth-left">
 					<div class="auth-logo">
-						<a href="main.jsp"><img src="assets/images/logo/YHS_LOGO.png"
+						<a href="index.jsp"><img src="assets/images/logo/YHS_LOGO1.png"
 						alt="Logo" id="LOGOLogin"></a>
 					</div>
-					<h1 class="auth-title"  style="font-size : 50px; margin-bottom : 0px;">
-						회원가입
+					<h1 class="auth-title"  style="font-size : 50px; margin-bottom : 0px; text-align:center;">
+						HR관리자 등록
 					</h1>
 					<br>
 					<br>
