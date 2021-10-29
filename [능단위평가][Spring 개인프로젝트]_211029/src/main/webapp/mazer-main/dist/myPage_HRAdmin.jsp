@@ -35,6 +35,7 @@
 					<br>
 					<br>
 					<form action="updateHRAdmin.do" method="post" name="signUpForm">
+						<input type="hidden" name="hnum" value="${userData.hnum}">
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl" 
 								placeholder="사번" name="hmem" value="${userData.hmem}" readonly>
