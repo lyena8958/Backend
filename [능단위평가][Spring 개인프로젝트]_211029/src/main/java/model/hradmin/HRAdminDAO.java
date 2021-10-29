@@ -10,7 +10,7 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 
-//SELETE Äõ¸®¹® MappeR Class
+//SELETE Ã„ÃµÂ¸Â®Â¹Â® MappeR Class
 class HRAdminRowMapper implements RowMapper<HRAdminVO>{
 
 	@Override
@@ -30,7 +30,7 @@ public class HRAdminDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	// Äõ¸®¹®
+	// Ã„ÃµÂ¸Â®Â¹Â®
 	private String GET_ONE = "SELECT * FROM HRADMIN WHERE hmem=? AND PW=?";
 	private String GET_LIST = "SELECT * FROM HRADMIN";
 	private String INSERT = "INSERT INTO HRADMIN (HNUM, HMEM, PW) VALUES ((SELECT NVL(MAX(HNUM),0)+1 FROM HRADMIN), ?, ?)";
@@ -70,7 +70,7 @@ public class HRAdminDAO {
 	
 	//[UPDATE]
 	public boolean updateHRAdmin(HRAdminVO vo) {
-		Object[] args = {vo.getPw(), vo.getHmem()};
+		Object[] args = {vo.getPw(), vo.getHnum()};
 		jdbcTemplate.update(UPDATE, args);
 		
 		return true;
