@@ -1,20 +1,18 @@
 package model.member;
 
-import java.sql.Date;
-
 public class MemberVO {
 	
 	private int mnum; // PK 
 	private String mName; // 이름
 	private String path; // 파일경로
-	private Date startDate; // 입사일
-	private Date endDate; // 퇴사일
-	private Date birthDate; // 생년월일
+	private String startDate; // 입사일
+	private String endDate; // 퇴사일
+	private String birthDate; // 생년월일
 	private String teamName; // 부서명
 	private String duty; // 직무
 	private String position; // 직위 
 	private int mrank; // 직급(년차)
-
+	
 	public int getMnum() {
 		return mnum;
 	}
@@ -33,22 +31,23 @@ public class MemberVO {
 	public void setPath(String path) {
 		this.path = path;
 	}
-	public Date getStartDate() {
+
+	public String getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
+	public void setStartDate(String startDate) {
 		this.startDate = startDate;
 	}
-	public Date getEndDate() {
+	public String getEndDate() {
 		return endDate;
 	}
-	public void setEndDate(Date endDate) {
+	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-	public Date getBirthDate() {
+	public String getBirthDate() {
 		return birthDate;
 	}
-	public void setBirthDate(Date birthDate) {
+	public void setBirthDate(String birthDate) {
 		this.birthDate = birthDate;
 	}
 	public String getTeamName() {

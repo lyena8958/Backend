@@ -20,9 +20,9 @@ class MemberRowMapper implements RowMapper<MemberVO>{
 		data.setMnum(rs.getInt("MNUM"));
 		data.setmName(rs.getString("MNAME"));
 		data.setPath(rs.getString("PATH"));
-		data.setStartDate(rs.getDate("STARTDATE"));
-		data.setEndDate(rs.getDate("ENDDATE"));
-		data.setBirthDate(rs.getDate("BIRTHDATE"));
+		data.setStartDate(rs.getString("STARTDATE"));
+		data.setEndDate(rs.getString("ENDDATE"));
+		data.setBirthDate(rs.getString("BIRTHDATE"));
 		data.setTeamName(rs.getString("TEAMNAME"));
 		data.setDuty(rs.getString("DUTY"));
 		data.setPosition(rs.getString("POSITION"));
@@ -59,7 +59,11 @@ public class MemberDAO {
 	//[ONE]
 	public MemberVO getData(MemberVO vo) {
 		Object[] args = {vo.getMnum()};
-		return jdbcTemplate.queryForObject(GET_ONE, args, new MemberRowMapper());
+		try{
+			return jdbcTemplate.queryForObject(GET_ONE, args, new MemberRowMapper());
+		}catch(Exception e) {
+			return null;
+		}
 		
 	}
 	
@@ -72,7 +76,8 @@ public class MemberDAO {
 	
 	//[INSERT]
 	public boolean insertMember(MemberVO vo) {
-		Object[] args = {vo.getmName(), vo.getPath(), vo.getStartDate(), vo.getEndDate(), vo.getBirthDate(), vo.getTeamName(), vo.getDuty(), vo.getPosition(), vo.getMrank()};
+		Object[] args = {vo.getmName(), vo.getPath(), vo.getStartDate(), vo.getEndDate(), 
+				vo.getBirthDate(), vo.getTeamName(), vo.getDuty(), vo.getPosition(), vo.getMrank()};
 		jdbcTemplate.update(INSERT, args);
 		
 		return true;
@@ -80,7 +85,8 @@ public class MemberDAO {
 	
 	//[UPDATE]
 	public boolean updateMember(MemberVO vo) {
-		Object[] args = {vo.getmName(), vo.getPath(), vo.getStartDate(), vo.getBirthDate(), vo.getTeamName(), vo.getDuty(), vo.getPosition(), vo.getMrank()};
+		Object[] args = {vo.getmName(), vo.getPath(), vo.getStartDate(), vo.getEndDate(), vo.getBirthDate(),
+				vo.getTeamName(), vo.getDuty(), vo.getPosition(), vo.getMrank(),vo.getMnum()};
 		jdbcTemplate.update(UPDATE, args);
 		
 		return true;
