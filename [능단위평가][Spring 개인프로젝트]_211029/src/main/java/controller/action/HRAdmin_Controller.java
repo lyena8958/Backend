@@ -33,7 +33,7 @@ public class HRAdmin_Controller {
 
 	//[로그인]
 	@RequestMapping(value="/mazer-main/dist/loginHRAdmin.do", method=RequestMethod.GET)
-	public String loginMove(HttpServletRequest request, HRAdminVO vo) {
+	public String loginMove() {
 		return "login.jsp";
 
 	}
@@ -91,7 +91,7 @@ public class HRAdmin_Controller {
 	//[HRAdmin 수정]
 	@RequestMapping("/mazer-main/dist/updateHRAdmin.do")
 	public String updateHRAdmin(HRAdminVO vo, HttpServletResponse response) throws IOException {
-
+		System.out.println("update VO : "+vo);
 		// 수정이 안되었다면,
 		if(!hrService.updateHRAdmin(vo)) {
 			try {
