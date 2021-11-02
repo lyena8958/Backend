@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+
+	<!-- Component관련 어노테이션 -->
+	<context:component-scan
+		base-package="model.board"></context:component-scan>
+
+	<!-- JdbcTemplate -->
+	<!-- DB -->
+	<bean class="org.apache.commons.dbcp.BasicDataSource"
+		id="dataSource" destroy-method="close">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="kim" />
+		<property name="password" value="8958" />
+	</bean>
+
+	<!-- JDBCTemplate -->
+	<bean class="org.springframework.jdbc.core.JdbcTemplate"
+		id="jdbcTemplate">
+		<property ref="dataSource" name="dataSource" />
+	</bean>
+
+<!-- 1102 -->
+	<!-- springframework에서 제공, mybatis.spring에서제공 -->
+	<!-- 38의 객체(==FB)로, 45 객체(==SqlSession)를 생성 -->
+
+	<!-- SqlSession 을 얻을 수 있는 "SessionFactory bean등록" -->
+	<bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"	value="classpath:sql-map-config.xml" />
+	</bean>
+	<!-- SqlSeesionFactoryBean 불러올 당시 싱글톤패턴을 null 조건문을 통해서  -> value="class~.xml"
+			어떤파일인지 등록해 sFactory를 등록했었다. -->
+
+
+	<!-- Mybatis extend가 아니라, 어노테이션으로 하는 경우 -->
+	<!-- SqlSessionTemplate를 등록 --> <!-- id를 지정하지 않은 것은 오직 하나이기 때문에 @Autowired로만으로 지정 가능 -->
+	<bean class="org.mybatis.spring.SqlSessionTemplate"> 
+		<constructor-arg ref="sessionFactory" />
+	</bean>
+
+
+</beans>

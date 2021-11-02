@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd">
+
+
+	<context:component-scan
+		base-package="controller"></context:component-scan>
+
+	<!-- 10.27 예외처리를 수행할 설정 -->
+	<mvc:annotation-driven></mvc:annotation-driven>
+
+	<!-- 파일 업로드 빈 -->
+	<!-- size value -1은 무제한!, 그러나 서버가 감당해야할 사이즈가 있으므로 100000로 정의할 수 있다. 넘으면.. 
+		사진 짤림..! -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="100000" />
+	</bean>
+
+	<!-- 다국 어처리 -->
+	<bean class="org.springframework.context.support.ResourceBundleMessageSource"
+		id="messageSource">
+		<property name="basenames">
+			<list>
+				<value>message.ms</value>
+			</list>
+		</property>
+	</bean>
+	<!-- 사용자 접속국가를 판단하여 위의 basenames를 통해서 다국어처리를 할 수 있음. -->
+	<bean class="org.springframework.web.servlet.i18n.SessionLocaleResolver"
+		id="localeResolver" />
+	<mvc:interceptors>
+
+
+
+		<bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+			<property value="lang" name="paramName" />
+		</bean>
+
+	</mvc:interceptors>
+	<!-- ~~Resolver 라고 되어있으면, 전부 다 이름을 맞춰주어야 한다. simple은 기본적인 클래스를 의미 기본적으로 
+		에러페이지는 다양하게 있기 때문에 폴더로 관리해주자 <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">s 
+		<property name="exceptionMappings"> <props> 어떤오류에/ 페이지를 보낼것인지 확인 <prop key="java.lang.NullPointerException">excep/error.jsp</prop> 
+		<prop key="java.lang.Exception">excep/error.jsp</prop> <prop key="java.lang.Exception">excep/error.jsp</prop> 
+		<prop key="java.lang.Exception">excep/error.jsp</prop> </props> </property> 
+		에러를 모두 하니씩 입력하기에는 번거롭다. 해서 , 아래와 같이 default 디폴트 설정을 해주자 <property name="defaultErrorView" 
+		value="excep/error.jsp"></property> </bean> -->
+
+	<!-- 10.21 -->
+	<!-- hendlerMapping -->
+	<!-- <bean class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping"> 
+		<property name="mappings"> <props> <prop key="/login.do">login</prop> <prop 
+		key="/logout.do">logout</prop> <prop key="/deleteMem.do">deleteMem</prop> 
+		<prop key="/editMem.do">editMem</prop> <prop key="/signUp.do">signUp</prop> 
+		<prop key="/main.do">main</prop> <prop key="/getBoard.do">getBoard</prop> 
+		<prop key="/insertBoard.do">insertBoard</prop> <prop key="/updateBoard.do">updateBoard</prop> 
+		<prop key="/deleteBoard.do">deleteBoard</prop> </props> </property> </bean> -->
+
+	<!-- controller bean create -->
+	<!-- <bean id="login" class="controller.member.M_LogIn_Controller"/> <bean 
+		id="logout" class="controller.member.M_LogOut_Controller"/> <bean id="deleteMem" 
+		class="controller.member.M_DELETE_Controller"/> <bean id="editMem" class="controller.member.M_UPDATE_Controller"/> 
+		<bean id="signUp" class="controller.member.M_INSERT_Controller"/> <bean id="main" 
+		class="controller.board.B_Main_Controller"/> <bean id="getBoard" class="controller.board.B_SELETEONE_Controller"/> 
+		<bean id="insertBoard" class="controller.board.B_INSERT_Controller"/> <bean 
+		id="updateBoard" class="controller.board.B_UPDATE_Controller"/> <bean id="deleteBoard" 
+		class="controller.board.B_DELETE_Controller"/> -->
+
+
+	<!-- ViewResolver -->
+	<!-- <bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<property name="prefix" value="/WEB-INF/board/"/> <property name="suffix" 
+		value=".jsp"/> </bean> -->
+
+
+
+</beans>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="mappings.board-mapping"> -->
+<mapper namespace="dao"> <!-- 이와 같이 해도 됨 (1반,2반을 병아리반으로 바꾸듯이) -->
+
+	<!-- SQL문 실행결과와 자바객체(VO)를 연결해주는 매퍼(Mapper) - jdbcTemplate mapper와 비슷한 부류다. -->
+	<!-- 별칭 설정이 되어있는 상태 -->
+	<!-- <resultMap type="board" id="boardResult"> <result property="title" 
+		column="TITLE"/> <result property="title" column="TITLE"/> </resultMap> -->
+
+	<!-- id는 "유일"해야 함 -->
+	<!-- 인자에 vo를 넣어야하기 때문에, parameterType="board"가 default로 들어가 있다. -->
+	<!-- 인자가 다른 경우 해당 속성에서 다르게 입력해주면 된다. -->
+	<insert id="insertBoard"> <!--<!-[CDATA[: XML 파서를 통해부등호를 판단할 수 있도록 하자(기존에는 <>사용시 "태그"로 인지해서 사용이 불가했음) -->
+		<![CDATA[ 
+		INSERT INTO BOARD (ID, TITLE, WRITER, CONTENT) VALUES ((SELECT NVL(MAX(ID),0)+1 FROM BOARD), #{title}, #{writer}, #{content})
+		]]>
+	</insert>
+
+	<update id="updateBoard">
+		<![CDATA[
+		UPDATE BOARD SET TITLE=#{title}, WRITER=#{writer}, CONTENT=#{content} WHERE ID=#{id}
+		]]>
+	</update>
+
+	<delete id="deleteBoard">
+		DELETE FROM BOARD WHERE ID=#{id}
+	</delete>
+
+	<!-- select류는 resultType를 등록해야 함 -->
+	<!-- 아래 board는 sql-map-config.xml에서 가져온다. -->
+	<select id="getBoard" resultType="board">
+		<![CDATA[
+		SELECT * FROM BOARD WHERE ID=#{id}
+		]]>
+	</select>
+
+	<!-- <select id="getBoard" resultMap="boardResult"> SELECT * FROM BOARD 
+		WHERE ID=#{id} </select> -->
+
+	<!-- Dynamic SQL - 동적 SQL문 작성 : 절 별로 나눠서 보기 때문에 주의 -->
+	<!-- CDATA는 안의 내용을 해석하지말라는 것을 언급해야하기 때문에, 아래 if문을 제외한 문자에서는 넣어주어야한다. -->
+	<!-- if문 : xml파서가 해석필요 -->
+	<!-- ex where id <![CDATA[ <=5 ]]>-->
+						<!-- 1=1은 항상 트루로 "AND"와 연결하기 위해서임 : 왜? 절 별로 나눠서 사용이 가능하기 때문에 -->
+	<select id="getBoardList" resultType="board">
+		SELECT * FROM BOARD WHERE 1=1
+		
+		<if test="condition == 'TITLE'">
+			AND TITLE LIKE '%' || #{keyword} || '%'
+		</if> 
+		<if test="condition == 'WRITER'">
+			AND WRITER LIKE '%' || #{keyword} || '%' 
+		</if> 		
+		
+		ORDER BY ID DESC
+		
+	</select>
+
+
+</mapper>
