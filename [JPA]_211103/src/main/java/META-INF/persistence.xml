@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+
+<!-- <class>com.lee.app.board.Board</class> -->
+<!--  하지않아도 테이블 어노테이션을 보고 하기 때문에, 작동이 된다. 
+	    하지만 모두 다 확인해야하기 때문에 수행속도가 느리고 안 될 수도 있다. -->
+<!--  등록을 권장하는 바다. -->
+
+	<persistence-unit name="JPAProject"> <!-- 영속성 유닛 -->
+		<class>com.lee.app.board.Board</class>
+		
+		<properties>
+			<!-- 필수속성 -->
+			<property name="javax.persistence.jdbc.driver" value="oracle.jdbc.driver.OracleDriver"/>
+            <property name="javax.persistence.jdbc.user" value="Hwang"/>
+            <property name="javax.persistence.jdbc.password" value="1234"/>
+            <property name="javax.persistence.jdbc.url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.Oracle10gDialect"/>
+		  	<!-- org.hibernate.dialect.MySQLDialect --> 
+			
+			<!-- 옵션속성 -->
+			<property name="hibernate.show_sql" value="true"/>
+			<property name="hibernate.hbm2ddl.auto" value="create"/>
+			<!-- └ create : 매번 새로 테이블 생성 (해당 Element의 default값이 create이다.)-->
+			<!-- └ create-drop : 매번 새로 테이블 생성, 종료직전에 drop -->
+			<!-- └ update : 기존 테이블 유지 : 기업에서 많이 사용(유지 해야하기 때문에, 칼럼 추가도 해줌) -->
+			
+		</properties>
+	</persistence-unit>
+	<!-- 영속성 유닛 -->
+</persistence>
