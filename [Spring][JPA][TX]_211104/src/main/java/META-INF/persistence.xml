@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1"
+	xmlns="http://xmlns.jcp.org/xml/ns/persistence"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="day78_1104">
+
+		<class>model.board.BoardVO</class>
+
+		<properties>
+			<property name="hibernate.dialect"
+				value="org.hibernate.dialect.Oracle10gDialect" />
+			<!-- org.hibernate.dialect.MySQLDialect -->
+
+			<!-- 옵션속성 -->
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.hbm2ddl.auto" value="create" />
+			<!-- └ create : 매번 새로 테이블 생성 (해당 Element의 default값이 create이다.) -->
+			<!-- └ create-drop : 매번 새로 테이블 생성, 종료직전에 drop -->
+			<!-- └ update : 기존 테이블 유지 : 기업에서 많이 사용(유지 해야하기 때문에, 칼럼 추가도 해줌) -->
+
+		</properties>
+	</persistence-unit>
+
+
+</persistence>
